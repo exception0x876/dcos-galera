@@ -25,7 +25,7 @@ digs=""
 
 for i in {1..20}
 do
-	digs=`dig +short $url`
+	digs=`dig +short @$DNS $url`
 	if [ -z "$digs" ]; then
 		echo "no DNS record found for $url"
 	else
