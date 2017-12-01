@@ -8,8 +8,16 @@ echo "own ip address: $ip"
 echo "waiting 5 seconds for dns"
 sleep 5
 
+IFS="/" read -r -a APP_PATH <<< "$MARATHON_APP_ID"
+
+for (( idx=${#APP_PATH[@]}-1 ; idx>=1 ; --idx )) ; do
+	url="$url${APP_PATH[idx]}."
+done
+
+url="${url}marathon.mesos"
+
 # try until DNS is ready
-url="galera.marathon.containerip.dcos.thisdcos.directory"
+#url="galera.marathon.containerip.dcos.thisdcos.directory"
 members=""
 digs=""
 
