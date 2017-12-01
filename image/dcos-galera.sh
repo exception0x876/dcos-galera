@@ -10,6 +10,8 @@ sleep 5
 
 IFS="/" read -r -a APP_PATH <<< "$MARATHON_APP_ID"
 
+url=""
+
 for (( idx=${#APP_PATH[@]}-1 ; idx>=1 ; --idx )) ; do
 	url="$url${APP_PATH[idx]}."
 done
